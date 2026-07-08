@@ -12,6 +12,7 @@ import {
   clearChat,
 } from "../features/chat/chatSlice.js";
 import RecordsList from "./RecordsList.jsx";
+import MarkdownText from "./MarkdownText.jsx";
 
 export default function AiAssistant() {
   const dispatch = useDispatch();
@@ -134,10 +135,10 @@ export default function AiAssistant() {
                 className={`max-w-[85%] whitespace-pre-wrap rounded-lg px-3 py-2 text-sm ${
                   m.role === "user"
                     ? "bg-blue-600 text-white"
-                    : "bg-cyan-50 text-slate-700 ring-1 ring-cyan-100"
+                    : "space-y-1 bg-cyan-50 text-slate-700 ring-1 ring-cyan-100"
                 }`}
               >
-                {m.content}
+                {m.role === "user" ? m.content : <MarkdownText text={m.content} />}
               </div>
             </div>
           )

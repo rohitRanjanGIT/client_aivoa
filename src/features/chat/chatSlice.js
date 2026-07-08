@@ -2,8 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const GREETING = {
   role: "assistant",
-  content:
-    'Log interaction details here (e.g., "Met Dr. Smith, discussed Prodo-X efficacy, positive sentiment, shared brochure"). You can also say "save it", "show my records", "open #3", or "delete #3".',
+  content: "Hi! Describe an interaction and I'll fill in the form for you.",
 };
 
 const initialState = {

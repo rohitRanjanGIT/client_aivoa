@@ -1,10 +1,17 @@
 import axios from "axios";
 
-// Requests go to /api and are proxied to the FastAPI server by Vite (see vite.config.js).
-const api = axios.create({ baseURL: "/api" });
+// In dev, VITE_API_BASE_URL is empty so requests go to "/api" and Vite proxies them to the
+// FastAPI server (see vite.config.js). In production (e.g. Vercel) set VITE_API_BASE_URL to the
+// deployed backend origin, e.g. https://server-aivoa.vercel.app — there is no dev proxy there.
+const API_BASE = (import.meta.env.VITE_API_BASE_URL || "").replace(/\/$/, "");
+const api = axios.create({ baseURL: `${API_BASE}/api` });
 
 export async function postChat({ threadId, message, model }) {
-  const { data } = await api.post("/chat", { thread_id: threadId, message, model });
+  const { data } = await api.post("/chat", {
+    thread_id: threadId,
+    message,
+    model,
+  });
   return data; // { reply, form, notification, records }
 }
 

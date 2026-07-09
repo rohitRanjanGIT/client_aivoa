@@ -10,7 +10,8 @@ dist-ssr/
 .env
 .env.*
 !.env.example
-!.env.production   # only a public backend URL, needed by the Vercel build
+# .env.production holds only a public backend URL (no secret) and is needed by the Vercel build
+!.env.production
 
 # Logs
 logs/
